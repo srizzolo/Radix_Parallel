@@ -7,6 +7,17 @@ using namespace std;
 const int r = 33333;
 const int N = 15;
 
+void arrayGen(int *a, int n)
+{
+    int *temp = new int[n];
+    for(int i=0; i<n; i++)
+    {
+        temp[i] = rand() % 101;
+    }
+    copy(temp, temp+n, a);
+    delete[] temp;
+}
+
 int getMax(int arr[], int n)
 {
 	int m = arr[0];
@@ -59,7 +70,6 @@ void radSort(int arr[], int digits, int n)
 
 	for (int j=0; j<digits; j++)
 	{
-
 		//radix sort into specific bins
 	    for(int k=0; k<n; k++)
 	    {
@@ -80,10 +90,6 @@ void radSort(int arr[], int digits, int n)
 	    	{
 	    		insSort(row, row.size());
 	    		bins[k] = row;
-	    	}
-	    	else if (row.size() == 1)
-	    	{
-	    	
 	    	}
 	    }
 	    
@@ -110,7 +116,6 @@ void radSort(int arr[], int digits, int n)
     	{
     		bins[k].clear();
     	}
-	    
 	}
 	
 	//Replace with sorted array 
@@ -118,14 +123,16 @@ void radSort(int arr[], int digits, int n)
     {
     	arr[j] = store[j];
     }
-
 }
 
 int main()
 {
-	int array[N] = {1,222,2,3,4,45,36,27,18,111,222,333,444,55,1};
-	int sizeArr = sizeof(array) / sizeof(array[0]);
-	vector<int> array2(array, array + sizeArr);
+	//Use queues
+	//Implement parallelizativon
+	//pass size, range as arguments
+	int array[N];
+	arrayGen(array, N);
+
 	//int n = 15;
 	int digits = (int) log10(getMax(array, 10)) + 1;
 
