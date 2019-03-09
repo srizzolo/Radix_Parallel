@@ -1,7 +1,7 @@
 //  PARALLEL RADIX SORT 
 // 	GROUP: Skylar Rizzolo & Noah Thornton 
 //	DATE MODIFIED: 3/9/19
-
+//	TODO: Implement parallelization, get runs for varying n, p and range
 
 #include <iostream>
 #include <vector>
@@ -64,7 +64,7 @@ double radSort(int arr[], int digits, int n)
     //One pass for each digit
 	for (int j=0; j<digits; j++)
 	{
-		//radix sort into specific bins
+		//Sort into specific bins: must be sequential
 	    for(int k=0; k<n; k++)
 	    {
 	        int curr = (int) (store[k]/pow(10,j));
@@ -75,7 +75,7 @@ double radSort(int arr[], int digits, int n)
 	    //reset store
 	    store.clear();
 	   
-	    //Store 1 pass of radix sorting
+	    //Store 1 pass of radix sorting: also must be sequential
 	    for(int k=0; k<10; k++)
 		{
 			//Pop out each value, queue by queue from 0-9 into store
@@ -110,8 +110,7 @@ int main(int argc, char * argv[])
 	sscanf (argv[1], "%d", &N);
 	sscanf (argv[2], "%d", &range);
 
-	//Use queues
-	//Implement parallelization
+	
 	int array[N];
 	arrayGen(array, N, range);
 
@@ -132,7 +131,6 @@ int main(int argc, char * argv[])
     	cout << array[j] << endl;
     }
     cout << endl;
-
 
 	return 0;
 }
