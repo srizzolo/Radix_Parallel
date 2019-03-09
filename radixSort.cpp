@@ -3,6 +3,15 @@
 //	DATE MODIFIED: 3/9/19
 //	TODO: Implement parallelization, get runs for varying n, p and range
 
+
+/*	
+	TO COMPILE & RUN: 
+	g++ -fopenmp -o radixSort radixSort.cpp
+	./radixSort n range
+
+	where n and range are ints 
+*/ 
+
 #include <iostream>
 #include <vector>
 #include <queue>
