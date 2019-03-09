@@ -1,11 +1,11 @@
 #include <iostream>
 #include <vector>
 #include <math.h>
+#include <stdio.h>
 #include <algorithm>
 
 using namespace std;
 const int r = 33333;
-const int N = 15;
 
 void arrayGen(int *a, int n)
 {
@@ -38,24 +38,6 @@ void printArray(vector<int> v, int n)
 	
 }
 
-void insSort(vector<int> vec, int n)
-{
-	vector<int> v = vec;
-	for(int j=1; j<v.size(); j++)
-    {
-        int k = v[j]; //key holding the element to be inserted
-        int i = j-1;
-        //Inserts A[j] into the previously sorted subarray A[1...j-1]
-        while (i>=0 && v[i]>k)
-        {
-            v[i+1] = v[i];
-            i--;
-        }
-        v[i+1] = k; //the element is inserted into its correct spot
-    }
-    return;
-}
-
 void radSort(int arr[], int digits, int n)
 {
 	vector<vector<int> > bins(n);
@@ -81,7 +63,7 @@ void radSort(int arr[], int digits, int n)
 	        bins[curr] = b;
 	    }
 
-	    //Sort each bin using counting sort
+	    /* DO NOT NEED TO SORT BINS, POP OUT LIKE QUEUE
 	    for(int k=0; k<n; k++)
 	    {
 	    	vector<int> row = bins[k];
@@ -92,7 +74,9 @@ void radSort(int arr[], int digits, int n)
 	    		bins[k] = row;
 	    	}
 	    }
-	    
+	    */
+
+
 	    //reset store
 	    store.clear();
 
@@ -100,11 +84,12 @@ void radSort(int arr[], int digits, int n)
 	    for(int k=0; k<n; k++)
 	    {
 	    	vector<int> row = bins[k];
-	    	if(row.size() == 1)
+	    	int s = row.size();
+	    	if(s == 1)
 	    		store.push_back(row[0]);
-	    	else if(row.size() > 1 && row.size() < n)
+	    	else if(s < n && s !=0)
 	    	{
-	    		for(int l=0; l<row.size(); l++)
+	    		for(int l=s; l>=0; l--)
 	    		{
 	    			store.push_back(row[l]);
 	 	   		}
@@ -125,8 +110,10 @@ void radSort(int arr[], int digits, int n)
     }
 }
 
-int main()
+int main(int argc, char * argv[])
 {
+	int N;
+	sscanf (argv[1], "%d", &N);
 	//Use queues
 	//Implement parallelizativon
 	//pass size, range as arguments
