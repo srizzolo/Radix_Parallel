@@ -1,8 +1,14 @@
+//  PARALLEL RADIX SORT 
+// 	GROUP: Skylar Rizzolo & Noah Thornton 
+//	DATE MODIFIED: 3/9/19
+
+
 #include <iostream>
 #include <vector>
 #include <math.h>
 #include <stdio.h>
 #include <algorithm>
+#include <omp.h>
 
 using namespace std;
 const int r = 33333;
@@ -55,7 +61,6 @@ void radSort(int arr[], int digits, int n)
 		//radix sort into specific bins
 	    for(int k=0; k<n; k++)
 	    {
-
 	        int curr = (int) store[k]/pow(10,j);
 	        curr %= 10;
 	        vector<int> b = bins[curr];
@@ -76,7 +81,6 @@ void radSort(int arr[], int digits, int n)
 	    }
 	    */
 
-
 	    //reset store
 	    store.clear();
 
@@ -84,16 +88,11 @@ void radSort(int arr[], int digits, int n)
 	    for(int k=0; k<n; k++)
 	    {
 	    	vector<int> row = bins[k];
-	    	int s = row.size();
-	    	if(s == 1)
-	    		store.push_back(row[0]);
-	    	else if(s < n && s !=0)
+	    	while(!row.empty())
 	    	{
-	    		for(int l=s; l>=0; l--)
-	    		{
-	    			store.push_back(row[l]);
-	 	   		}
-	 	   	}
+	    		store.push_back(row.back());
+	    		row.pop_back();
+	    	}		
 	    }
 
 	    //reset bins
@@ -114,9 +113,9 @@ int main(int argc, char * argv[])
 {
 	int N;
 	sscanf (argv[1], "%d", &N);
+
 	//Use queues
-	//Implement parallelizativon
-	//pass size, range as arguments
+	//Implement parallelization
 	int array[N];
 	arrayGen(array, N);
 
