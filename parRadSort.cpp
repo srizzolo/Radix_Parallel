@@ -1,22 +1,14 @@
-//  PARALLEL RADIX SORT 
-// 	GROUP: Skylar Rizzolo & Noah Thornton 
-//	DATE MODIFIED: 3/9/19
-//	TODO: Implement parallelization, get runs for varying n, p and range
-
-
-/*	
-	TO COMPILE & RUN: 
-	g++ -fopenmp -o radixSort radixSort.cpp
-	./radixSort n range
-
-	where n and range are ints 
-*/ 
-
+#include <iostream>
+#include <vector>
+#include <queue>
+#include <math.h>
+#include <stdio.h>
+#include <omp.h>
 #include "radixsort.h"
 
 using namespace std;
 
-double radSort(int arr[], int digits, int n)
+double parRadSort(int arr[], int digits, int n)
 {
 	vector<queue<int> > bins(10);
     vector<int> store(0);
@@ -74,4 +66,3 @@ double radSort(int arr[], int digits, int n)
     }
     return elapsed;
 }
-
