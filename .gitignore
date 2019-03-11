@@ -1,2 +1,15 @@
 [^\.]*
-.gitignore
+*.o
+*.com
+.DS_Store
+*.class
+*.exe
+*.zip
+*.tar
+*.gz
+*.dmg
+*.iso
+*.7z
+*.jar
+
+
