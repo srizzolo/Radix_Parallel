@@ -1,4 +1,4 @@
-//  PARALLEL RADIX SORT 
+//  SEQUENTIAL RADIX SORT 
 // 	GROUP: Skylar Rizzolo & Noah Thornton 
 //	DATE MODIFIED: 3/9/19
 //	TODO: Implement parallelization, get runs for varying n, p and range
@@ -6,8 +6,8 @@
 
 /*	
 	TO COMPILE & RUN: 
-	g++ -fopenmp -o radixSort radixSort.cpp
-	./radixSort n range
+	g++ -fopenmp -o sort seqRadSort.cpp
+	./sort n range
 
 	where n and range are ints 
 */ 

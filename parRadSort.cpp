@@ -1,3 +1,17 @@
+//  PARALLEL RADIX SORT 
+// 	GROUP: Skylar Rizzolo & Noah Thornton 
+//	DATE MODIFIED: 3/9/19
+//	TODO: Implement parallelization, get runs for varying n, p and range
+
+
+/*	
+	TO COMPILE & RUN: 
+	g++ -fopenmp -o parRadSort parRadSort.cpp
+	./parRadSort n range
+
+	where n and range are ints 
+*/ 
+
 #include <iostream>
 #include <vector>
 #include <math.h>
@@ -140,9 +154,9 @@ int main(int argc, char * argv[])
 	    MPI_Irecv(&root, 1, MPI_INT, numProcs - 1, 0, MPI_COMM_WORLD, &request);
  		MPI_Wait(&request, MPI_STATUS_IGNORE);
 
- 		cout << "\nAfter radix sorting:";
- 		printVector(store, N);
- 		printf("Finishing ring print with process %d, and ending program.\n", rank);
+ 		//cout << "\nAfter radix sorting:";
+ 		//printVector(store, N);
+ 		//printf("Finishing ring print with process %d, and ending program.\n", rank);
  	}
  	double maxTime;
  	MPI_Reduce(&elapsed, &maxTime, 1, MPI_DOUBLE, MPI_MAX, 0, MPI_COMM_WORLD);
